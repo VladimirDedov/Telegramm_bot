@@ -1,7 +1,7 @@
 from dotenv import find_dotenv, load_dotenv
 from aiogram.types import BotCommand
 
-ALLOWED_UPDATES = ['message, edited_message']  # ограничение типов апдейтов, которые приходят к боту
+ALLOWED_UPDATES = ['message', 'edited_message', 'callback_query']  # ограничение типов апдейтов, которые приходят к боту
 load_dotenv(find_dotenv())  # Загружает переменные из .env в окружение os автоматически
 
 chat_private_menu = [

@@ -8,6 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from ..filters.chat_types import ChatTypeFilter, IsAdmin
 from ..keyboards.kbd import ADMIN_KB
+from ..keyboards.inline import get_callback_btns
 from ..database.orm_query import orm_add_assue, orm_get_assues
 
 print('Проверка')
@@ -24,7 +25,7 @@ async def add_issue(message: types.Message):
 async def get_assue_list(message: types.Message, session: AsyncSession):
     assue_list = await orm_get_assues(session=session)
     for assue in assue_list:
-        await message.answer(f"{assue.name}")
+        await message.answer(f"{assue.name}", reply_markup=get_callback_btns(btns={f"{assue.name}":f"{assue.id}"}))
 
 # Код для машины состояний. Состояния машины состояний
 class AddAssue(StatesGroup):
